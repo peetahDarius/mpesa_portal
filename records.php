@@ -64,7 +64,20 @@
       .mpesa {
         background-color: green !important;
       }
-
+      .tab{
+        color:grey;
+        text-decoration:none!important;
+      }
+      .tab:hover{
+        color:white!important;
+      }
+      .mpesa-tab:hover{
+        background-color: green !important;
+ 
+      }
+      .custom-record{
+        width: 600px!important;
+      }
       img {
         border-radius: 15px;
       }
@@ -72,34 +85,52 @@
   </head>
   <body oncontextmenu="return false" class="snippet-body">
     <div class="container d-flex justify-content-center">
-      <div class="card mt-5 px-3 py-4">
+      <div class="card  custom-record mt-5 px-3 py-4">
         <div class="d-flex flex-row justify-content-around">
-          <div class="mpesa"><span>Mpesa </span></div>
+          <div style="background-color:#545EBD; color:white;" ><span >Records</span></div>
+          <div style="display:none;"><span>Card</span></div>
         </div>
         <div class="media mt-4 pl-2">
           <img src="./images/1200px-M-PESA_LOGO-01.svg.png" class="mr-3" height="75" />
           <div class="media-body">
-            <h6 class="mt-1">Enter Amount & Number</h6>
+              <br>
+            <h6 class="mt-1">Transaction Records</h6>
           </div>
         </div>
         <div class="media mt-3 pl-2">
                           <!--bs5 input-->
+       <div class="table-responsive" >
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Transaction NO</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Transaction ID</th>
+                        <th scope="col">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
 
-            <form class="row g-3" action="./stk_initiate.php" method="POST">
-            
-                <div class="col-12">
-                  <label for="inputAddress" class="form-label">Amount</label>
-                  <input type="text" class="form-control" name="amount" placeholder="Enter Amount">
-                </div>
-                <div class="col-12">
-                  <label for="inputAddress2" class="form-label" >Phone Number</label>
-                  <input type="text" class="form-control" name="phone"  placeholder="Enter Phone Number">
-                </div>
-             
-                <div class="col-12">
-                  <button type="submit" class="btn btn-success" name="submit" value="submit">Send</button>
-                </div>
-              </form>
+            include('./conn.php');
+
+            $stmt = $conn->query('SELECT * FROM pesa');
+            $stmt->execute();
+            while($row = $stmt->fetch())
+            {
+                ?>
+                    <tr>
+                        <td style="color:black;"><?php echo $row['id']; ?></td>
+                        <td style="color:green;"><?php echo $row['PhoneNumber']; ?></td>
+                        <td style="color:crimson;"><?php echo $row['MpesaReceiptNumber']; ?></td>
+                        <td style="color:green;"><?php echo $row['amount']; ?></td>
+
+                    </tr>
+
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
               <!--bs5 input-->
           </div>
         </div>
