@@ -28,7 +28,7 @@ $Resultcode = $callbackContent->Body->stkCallback->ResultCode;
 $CheckoutRequestID = $callbackContent->Body->stkCallback->CheckoutRequestID;
 $Amount = $callbackContent->Body->stkCallback->CallbackMetadata->Item[0]->Value;
 $MpesaReceiptNumber = $callbackContent->Body->stkCallback->CallbackMetadata->Item[1]->Value;
-$PhoneNumber = $callbackContent->Body->stkCallback->CallbackMetadata->Item[4]->Value;
+$PhoneNumber = $callbackContent->Body->stkCallback->CallbackMetadata->Item[3]->Value;
 if ($Resultcode == 0) {
   
   include "conn.php";

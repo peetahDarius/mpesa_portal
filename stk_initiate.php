@@ -22,8 +22,8 @@ if(isset($_POST['submit'])){
     actually deducted from a clients side/your test phone number once the PIN has been entered to authorize the transaction. 
     for developer/test accounts, this money will be reversed automatically by midnight.
   */
-  
-   $PartyA = $_POST['phone']; // This is your phone number, 
+  $number = $_POST['phone'];
+  $PartyA = substr_replace($number,'254', 0,1); // This is your phone number, 
   $AccountReference = 'Brooksys Tech';
   $TransactionDesc = 'Test Payment';
   $Amount = $_POST['amount'];;
@@ -42,7 +42,7 @@ if(isset($_POST['submit'])){
   $initiate_url = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
 
   # callback url
-  $CallBackURL = 'https://4099-197-248-144-49.in.ngrok.io/portal/callback_url.php';  
+  $CallBackURL = 'https://a018-197-248-144-49.in.ngrok.io/portal/callback_url.php';  
 
   $curl = curl_init($access_token_url);
   curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
@@ -83,8 +83,8 @@ if(isset($_POST['submit'])){
   curl_setopt($curl, CURLOPT_POST, true);
   curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
   $curl_response = curl_exec($curl);
-  print_r($curl_response);
-
-  echo $curl_response;
+  if ($curl_response){
+    include "index.php";
+  } 
 };
 ?>

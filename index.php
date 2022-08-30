@@ -95,7 +95,6 @@
                   <label for="inputAddress2" class="form-label" >Phone Number</label>
                   <input type="text" class="form-control" name="phone"  placeholder="Enter Phone Number">
                 </div>
-             
                 <div class="col-12">
                   <button type="submit" class="btn btn-success" name="submit" value="submit">Send</button>
                 </div>
